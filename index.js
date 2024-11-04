@@ -56,23 +56,23 @@ async function updateTopTracks(json) {
     artist = truncate(artist, 19)
 
     const line = [
-      name.padEnd(34 + name.length - eaw.length(name)),
-      artist.padStart(20 + artist.length - eaw.length(artist)),
-    ]
+			`🎵 ${name.padEnd(34 + name.length - eaw.length(name))}`,
+			`🎤 ${artist.padStart(20 + artist.length - eaw.length(artist))}`,
+		];
     lines.push(line.join(''))
   }
 
   try {
     const filename = Object.keys(gist.data.files)[0]
     await octo.gists.update({
-      gist_id,
-      files: {
-        [filename]: {
-          filename: '🎵 My Spotify Top Tracks',
-          content: lines.join('\n'),
-        },
-      },
-    })
+			gist_id,
+			files: {
+				[filename]: {
+					filename: "🎶 My Top Spotify Tracks",
+					content: lines.join("\n"),
+				},
+			},
+		});
   } catch (error) {
     console.error(
       `spotify-box ran into an issue for updating your gist:\n${error}`

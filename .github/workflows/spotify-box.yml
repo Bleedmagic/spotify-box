@@ -2,19 +2,20 @@ name: spotify-box
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # Runs at 00:00 UTC every day
+    - cron: "0 0 * * *" # Runs at 00:00 UTC every day
   push:
-    branches: main
+    branches:
+      - main
 jobs:
   updateTopTracks:
-   runs-on: ubuntu-latest
-   environment: prod
-   steps:
-     - uses: actions/checkout@v3
-     - run: npm install
-     - name: Update
-       uses: ./
-       env:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install
+      - name: Update
+        uses: ./
+        env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GIST_ID: ${{ secrets.GIST_ID }}
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
