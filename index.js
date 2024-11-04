@@ -57,7 +57,7 @@ async function updateTopTracks(json) {
 
     const line = [
 			`🎵 ${name.padEnd(34 + name.length - eaw.length(name))}`,
-			`🎤 ${artist.padStart(20 + artist.length - eaw.length(artist))}`,
+			`🎤 ${artist}`,
 		];
     lines.push(line.join(''))
   }
