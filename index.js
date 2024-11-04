@@ -52,11 +52,11 @@ async function updateTopTracks(json) {
   const lines = []
   for (let index = 0; index < Math.min(tracks.length, 10); index++) {
     let { name, artist } = tracks[index]
-    name = truncate(name, 28)
-    artist = truncate(artist, 24)
+    name = truncate(name, 25)
+    artist = truncate(artist, 19)
 
     const line = [
-			`🎵 ${name.padEnd(34 + name.length - eaw.length(name))}`,
+			`🎵 ${name.padEnd(27 + name.length - eaw.length(name))}`,
 			`🎤 ${artist}`,
 		];
     lines.push(line.join(''))
