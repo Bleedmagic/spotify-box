@@ -1,4 +1,5 @@
 name: spotify-box
+
 on:
   workflow_dispatch:
   schedule:
@@ -6,13 +7,23 @@ on:
   push:
     branches:
       - main
+
 jobs:
   updateTopTracks:
     runs-on: ubuntu-latest
     environment: prod
     steps:
       - uses: actions/checkout@v3
-      - run: npm install
+
+      - name: Install dependencies with retry
+        run: |
+          for i in 1 2 3; do
+            echo "Attempt $i: Installing dependencies..."
+            npm install && break
+            echo "npm install failed. Retrying in 10 seconds..."
+            sleep 10
+          done
+
       - name: Update
         uses: ./
         env:
